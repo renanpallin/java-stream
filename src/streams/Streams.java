@@ -9,9 +9,9 @@ import java.util.stream.IntStream;
 public class Streams {
 
 	private static char[] vogais = {'a', 'e', 'i', 'o', 'u'};
-	public static void main(String[] args) {
-		System.out.println( findChar("aAbBABacafeafie") );
-	}
+//	public static void main(String[] args) {
+//		System.out.println( findChar("aAbBABacafe") );
+//	}
 	
 	/**
 	 * Encontra o primeiro caractere Vogal após uma consoante antecessora
@@ -36,10 +36,11 @@ public class Streams {
 	    OfInt iterator = stream.iterator();
 	    while (iterator.hasNext()) {
 	      final char current = (char) iterator.next().intValue();
-    	  if (isVogal(current) && !isVogal(prev) && isVogal(previousPrev))
+
+	      if (possibleCharsWeWant.contains(current))
+    		  possibleCharsWeWant.remove(current);    		  
+    	  else if (isVogal(current) && !isVogal(prev) && isVogal(previousPrev))
     		  possibleCharsWeWant.add(current);
-    	  else if (possibleCharsWeWant.contains(current))
-	    	  possibleCharsWeWant.remove(current);
 	      
 	      previousPrev = prev;
 	      prev = current;
